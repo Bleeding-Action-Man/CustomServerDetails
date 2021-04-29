@@ -38,4 +38,4 @@ For default `serverinfo` keys:
 
 ## Steam workshop
 
-<https://steamcommunity.com/sharedfiles/filedetails/?id=2463978063>
+[Direct Link](https://steamcommunity.com/sharedfiles/filedetails/?id=2463978063)

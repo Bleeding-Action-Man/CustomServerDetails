@@ -4,12 +4,17 @@
 
 Allows to color, rename, edit other server infos, print game states (aka WIPE, WIN, LOBBY, etc) and players states (DEAD, SPECTATING, etc). And you can add your own haiku's / custom key-infos.
 
+## Vel-San Modification
+
+- InfoBlocks can now be used on default server name (even if bCustomServerName=False)
+- Removed the need to put `%infoBlock%` in server name
+
 ## Installation
 
 ```cpp
 `KillingFloor.ini`
 [Engine.GameEngine]
-;ServerActors=IpDrv.MasterServerUplink 
+;ServerActors=IpDrv.MasterServerUplink
 ServerActors=CustomServerDetails.CSDMasterServerUplink
 ```
 

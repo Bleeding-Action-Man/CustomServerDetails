@@ -87,14 +87,12 @@ event postBeginPlay()
 
   // dynamic load stateAnalyzer
   stateAnalyzerClass = class<StateAnalyzerBase>(dynamicLoadObject(stateAnalyzerClassName, class'Class'));
-  if (bInfoBlockInServerName && bCustomServerName)
+  if (bInfoBlockInServerName || bCustomServerName)
   {
     if (stateAnalyzerClass != none)
       stateAnalyzer = spawn(stateAnalyzerClass);
     else
       log("CustomServerDetails[WARNING]: Class"@stateAnalyzerClassName@"(stateAnalyzerClassName) wasn't found. Dynamic changing of server name won't work.");
-    if (inStr(serverName, "%infoBlock%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bInfoBlockInServerName=true', but %infoBlock% wasn't found in 'serverName'. InfoBlock will be placed at the end os server's name.");
   }
 
   // add to the game special custom GameRules
@@ -142,7 +140,7 @@ event refresh()
   level.game.getServerDetails(srl);
 
   // change server name to custom one
-  if (bCustomServerName)
+  if (bInfoBlockInServerName || bCustomServerName)
     dynamicChangeServerName();
 
   // filter/add/change server details
@@ -218,13 +216,10 @@ function dynamicChangeServerName()
         infoBlock = fillInfoBlock(infoBlockPatterns[i].pattern);
         break;
       }
-
-    // paste infoBlock in server name
-    if (inStr(serverName, "%infoBlock%") != -1)
-      srl.serverName = repl(serverName, "%infoBlock%", infoBlock);
-    // can't find %infoBlock% in the server's name, so past infoBlock at the end
-    else
+    if(bCustomServerName)
       srl.serverName = serverName@infoBlock;
+    else
+      srl.serverName = Level.GRI.ServerName@infoBlock;
   }
   // infoBlock isn't used in the server name
   else

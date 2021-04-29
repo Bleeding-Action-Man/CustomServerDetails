@@ -33,7 +33,7 @@ function string getState()
 // {
 //   local Controller c;
 //   local byte aliveCount;
-  
+
 //   for (c = level.ControllerList; c != none; c = c.nextController)
 //     if ((c.playerReplicationInfo != none) && c.bIsPlayer && !c.playerReplicationInfo.bOutOfLives && !c.playerReplicationInfo.bOnlySpectator )
 //       aliveCount++;

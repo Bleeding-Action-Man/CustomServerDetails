@@ -14,7 +14,7 @@ struct displayedDetails
   var  bool    bChangeName; // change name of the key
   var  string  newName;     // new name
   var  bool    bCustom;     // if true, set name and customValue (and ofc their colors)
-  var  string  customValue; 
+  var  string  customValue;
 };
 
 struct infoBlockPattern
@@ -39,7 +39,7 @@ var  config  bool                         bMapColor; //obviously
 var  config  string                       mapColor; //obviously
 var  config  bool                         bInfoBlockInServerName; //if true, adds block with information in the server's name, there must be %infoBlock% in the "serverName"
 var  config  string                       stateAnalyzerClassName; //special class, which return the state of the game (must be extended from 'StateAnalyzerBase')
-var  config  array<infoBlockPattern>      infoBlockPatterns; //there is unique name of the server for every state of the game 
+var  config  array<infoBlockPattern>      infoBlockPatterns; //there is unique name of the server for every state of the game
 var  config  array<infoBlockKey>          infoBlockKeys; //custom %keys%, which are used in the "infoBlock", so some server details can be showed in the server's name
 var  config  bool                         bAnotherNicknamesStyle; //if true, you can define the style of nicknames, depends on state of the player (dead, spectating etc.)
 var  config  string                       playerDeadNicknamePattern; //style of player's nickname when he is dead. must consists %nickname%
@@ -92,9 +92,9 @@ event postBeginPlay()
     if (stateAnalyzerClass != none)
       stateAnalyzer = spawn(stateAnalyzerClass);
     else
-      log("CustomServerDetails[WARNING]: Class"@stateAnalyzerClassName@"(stateAnalyzerClassName) wasn't found. Dynamic changing of server name won't work.");		
+      log("CustomServerDetails[WARNING]: Class"@stateAnalyzerClassName@"(stateAnalyzerClassName) wasn't found. Dynamic changing of server name won't work.");
     if (inStr(serverName, "%infoBlock%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bInfoBlockInServerName=true', but %infoBlock% wasn't found in 'serverName'. InfoBlock will be placed at the end os server's name.");		
+      log("CustomServerDetails[WARNING]: You set 'bInfoBlockInServerName=true', but %infoBlock% wasn't found in 'serverName'. InfoBlock will be placed at the end os server's name.");
   }
 
   // add to the game special custom GameRules
@@ -117,13 +117,13 @@ event postBeginPlay()
   if (bAnotherNicknamesStyle)
   {
     if (inStr(playerDeadNicknamePattern, "%nickname%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerDeadNicknamePattern'. JUST DO IT!");		
+      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerDeadNicknamePattern'. JUST DO IT!");
     if (inStr(playerSpectatingNicknamePattern, "%nickname%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerSpectatingNicknamePattern'. JUST DO IT!");		
+      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerSpectatingNicknamePattern'. JUST DO IT!");
     if (inStr(playerAwaitingNicknamePattern, "%nickname%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerAwaitingNicknamePattern'. JUST DO IT!");		
+      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerAwaitingNicknamePattern'. JUST DO IT!");
     if (inStr(playerAliveNicknamePattern, "%nickname%") == -1)
-      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerAliveNicknamePattern'. JUST DO IT!");		
+      log("CustomServerDetails[WARNING]: You set 'bAnotherNicknamesStyle=true'. But you didn't paste %nickname% in 'playerAliveNicknamePattern'. JUST DO IT!");
   }
 }
 
@@ -145,7 +145,7 @@ event refresh()
   if (bCustomServerName)
     dynamicChangeServerName();
 
-  // filter/add/change server details 
+  // filter/add/change server details
   if (bChangeServerDetails)
     filterServerDetails();
 
@@ -212,7 +212,7 @@ function dynamicChangeServerName()
 
     // get appropriate infoBlock pattern for current game state
     // and then replace %shitLikeThis% with real values
-    for (i = 0; i < infoBlockPatterns.length; i++)		
+    for (i = 0; i < infoBlockPatterns.length; i++)
       if (currentState == infoBlockPatterns[i].state)
       {
         infoBlock = fillInfoBlock(infoBlockPatterns[i].pattern);
@@ -271,7 +271,7 @@ function GetServerPlayers()
   if (!bAnotherNicknamesStyle)
   {
     teamFlag[0] = 1 << 29;
-    teamFlag[1] = teamFlag[0] << 1;		
+    teamFlag[1] = teamFlag[0] << 1;
   }
 
   for (c = level.controllerList; c != none; c = c.nextController)
@@ -298,7 +298,7 @@ function GetServerPlayers()
       }
       else if (level.game.bTeamGame && pri.team != none)
       {
-        srl.playerInfo[i].statsID = srl.playerInfo[i].statsID | teamFlag[pri.Team.TeamIndex];				
+        srl.playerInfo[i].statsID = srl.playerInfo[i].statsID | teamFlag[pri.Team.TeamIndex];
         srl.playerInfo[i].playerName = pri.playerName;
       }
 

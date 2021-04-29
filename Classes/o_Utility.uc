@@ -21,13 +21,13 @@ var array<string> colorCodes;
 
 
 // ==========================================================================
-// main function that colors strings from user defined tags / color structs 
+// main function that colors strings from user defined tags / color structs
 static final function string ParseTags(string input)
 {
   local int i;
 
   // fill our array at first call, and keep using it
-  // to avoid unnecessary function calls 
+  // to avoid unnecessary function calls
   if (!default.bInitialize)
   {
     if (default.colorList.length == 0)
